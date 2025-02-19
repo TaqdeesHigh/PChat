@@ -10,7 +10,7 @@ use taqdees\pchat\commands\PChat;
 use taqdees\pchat\events\ChatEventHandler;
 use taqdees\pchat\managers\ColorManager;
 use taqdees\pchat\managers\ChannelManager;
-use taqdees\pchat\managers\CoolDownManager;
+use taqdees\pchat\managers\CooldownManager;
 
 class Main extends PluginBase {
     private static Main $instance;
