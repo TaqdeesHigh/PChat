@@ -8,16 +8,20 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
+use pocketmine\plugin\PluginOwned;
+use pocketmine\plugin\PluginOwnedTrait;
 use taqdees\pchat\Main;
 use taqdees\pchat\forms\ChatSettingsForm;
 
-class ChatCommand extends Command {
+class ChatCommand extends Command implements PluginOwned {
+    use PluginOwnedTrait;
     private Main $plugin;
     
     public function __construct(Main $plugin) {
         parent::__construct("chat", "Open chat settings", "/chat", ["c"]);
         $this->setPermission("pchat.command.chat");
         $this->plugin = $plugin;
+        $this->owningPlugin = $plugin;
     }
     
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {

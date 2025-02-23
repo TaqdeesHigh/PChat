@@ -8,16 +8,20 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
+use pocketmine\plugin\PluginOwned;
+use pocketmine\plugin\PluginOwnedTrait;
 use taqdees\pchat\Main;
 use taqdees\pchat\forms\CooldownSettingsForm;
 
-class PChat extends Command {
+class PChat extends Command implements PluginOwned {
+    use PluginOwnedTrait;
     private Main $plugin;
     
     public function __construct(Main $plugin) {
         parent::__construct("pchat", "PChat admin commands", "/pchat cooldown", ["pchatadmin"]);
         $this->setPermission("pchat.admin.cooldown");
         $this->plugin = $plugin;
+        $this->owningPlugin = $plugin; // Required for PluginOwnedTrait
     }
     
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
